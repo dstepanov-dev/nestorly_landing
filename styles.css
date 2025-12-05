@@ -1,0 +1,702 @@
+/* --- RESET & VARIABLES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font-title: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    
+    --color-primary-green: #6DAF63;
+    --color-primary-gradient: linear-gradient(90deg, #8CC560 0%, #5B9B6A 100%);
+    --color-dark-blue: #0E1D34;
+    --color-text-dark: #1A1A1A;
+    --color-text-gray: #555555;
+    --color-bg-light: #F8F9FA;
+    --color-border: #E0E0E0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-dark);
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* --- UTILITIES --- */
+.container {
+    margin: 0 auto;
+    padding: 0 0 0 64px;
+    position: relative;
+    width: 100%;
+    /* Max width for desktop viewing */
+    max-width: 1920px; 
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    font-weight: 700;
+}
+
+p {
+    line-height: 1.6;
+    color: var(--color-text-gray);
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--color-primary-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(109, 175, 99, 0.4);
+    transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* --- PLACEHOLDER HELPERS --- */
+.placeholder-box {
+    background-color: #EEEEEE;
+    border: 2px dashed #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.logo-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 60px;
+}
+
+.logo-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--color-primary-gradient);
+    border-radius: 50% 0 50% 0;
+}
+
+/* ===================================
+--- HERO SECTION (ADAPTED FOR IMAGES) --- 
+===================================
+*/
+.hero {
+    padding-top: 40px;
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    height: 878px;
+}
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.hero-text {
+    width: 45%;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.hero-text p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.hero-visual {
+    width: 70%; /* Adjusted width */
+    position: absolute;
+    right: -120px; /* Adjusted position to match screenshot overlap */
+    top: 0; /* Adjusted vertical position */
+    height: 878px;
+    display: flex;
+    z-index: 1; 
+}
+
+/* Simulating the House BG using the actual image */
+.hero-house-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 878px;
+    background-image: url('/images/image 2.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: unset;
+    z-index: 0;
+}
+
+/* Dashboard Overlay - Using Mask group.png */
+.hero-dashboard-ui {
+    position: relative;
+    width: 70%;
+    height: 60%;
+    background: none;
+    top: 250px;
+    left: -100px;
+    border-radius: 12px;
+    box-shadow: none;
+    z-index: 1;
+    padding: 0;
+    display: block;
+}
+
+/* Ensure the dashboard image fills its container */
+.hero-dashboard-ui img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* --- STATS SECTION --- */
+.stats-section {
+    background-color: #F1F5F8;
+    padding: 40px 0;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 100px;
+    text-align: left;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-icon {
+    width: 90px;
+    height: 90px;
+    border: 2px solid #333;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon svg { width: 100%; height: 65%; fill: #333; }
+
+.stat-info h3 {
+    font-size: 48px;
+    margin-bottom: 2px;
+}
+
+.stat-info span {
+    font-size: 28px;
+    color: #666;
+    font-family: var(--font-body);
+}
+
+/* --- FEATURES SECTION --- */
+.features-section {
+    padding: 80px 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-width: 1480px;
+    margin: 0 auto;
+    min-height: 280px;
+}
+
+.feature-text {
+    flex: 1;
+    padding: 40px 50px;
+}
+
+.feature-text h2 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.feature-text p {
+    font-size: 32px;
+    color: #555;
+}
+
+.feature-visual {
+    flex: 1;
+    height: 100%;
+    background: #F8F9FB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Mock UI for Features (retained) */
+.mock-ui-safety {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.mock-alert {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.alert-icon { width: 40px; height: 40px; background: #FFE5E5; border-radius: 8px; display: flex; justify-content: center; align-items: center; color: #D32F2F; font-weight: bold;}
+
+.mock-ui-map {
+    width: 100%;
+    height: 180px;
+    background-color: #E6EEF5;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    /* Simple CSS Pattern for Map */
+    background-image: radial-gradient(#fff 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.map-btn {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.map-btn-2 { left: 55%; top: 50%; }
+
+/* ===================================
+--- PROMO BANNER SECTION (ADAPTED FOR IMAGES) --- 
+===================================
+*/
+.promo-section {
+    position: relative;
+    height: 820px;
+    background-color: transparent; /* Changed from dark blue */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left side */
+}
+
+/* Simulating the digital/house background image */
+.promo-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Use image 44.png for background */
+    background: url('/images/image 44.png') no-repeat; 
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+
+/* Grid overlay effect - Removed as image 44.png is likely the full background */
+.promo-bg::after {
+    content: none;
+}
+
+/* The Person Image Placeholder - Removed as image 44.png includes the person */
+.promo-person {
+    display: none;
+}
+
+/* Glassmorphism Card */
+.promo-card {
+    position: relative;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(56%);
+    -webkit-backdrop-filter: blur(56%);
+    border-radius: 16px;
+    text-align: center; /* Aligned left to match screenshot */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-right: auto; 
+    margin-left: auto; /* Offset to left to balance person in the image */
+    padding: 50px 50px 65px 50px;
+    max-width: 919px;
+}
+
+.promo-card h3 {
+    font-size: 40px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.promo-card a {
+    color: #333;
+    font-size: 32px;
+    text-decoration: none;
+    font-weight: 600;
+    padding-bottom: 2px;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: var(--color-dark-blue);
+    color: white;
+    padding: 60px 0 30px 0;
+    text-align: center;
+}
+
+.footer h2 {
+    font-size: 64px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.footer .btn {
+    padding: 12px 30px;
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.footer-links a {
+    color: #A0AEC0;
+    text-decoration: none;
+    font-size: 28px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* ===================================
+--- RESPONSIVE ADJUSTMENTS --- 
+===================================
+*/
+
+/* Tablet and smaller adjustments (Max-width: 992px) */
+@media (max-width: 992px) {
+    /* General Container Adjustment */
+    .container {
+        padding: 0 40px; /* Adjust container padding for smaller screens */
+        width: auto;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: auto;
+        padding-bottom: 60px;
+    }
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 60px;
+    }
+    .hero-text {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .hero-text h1 {
+        font-size: 40px;
+    }
+    .hero-text p {
+        max-width: 100%;
+        margin: 15px auto 30px auto;
+    }
+
+    /* Hide large visual elements and reposition dashboard */
+    .hero-visual,
+    .hero-house-bg { 
+        display: none; 
+    }
+    .hero-dashboard-ui {
+        position: static;
+        width: 80%;
+        height: auto;
+        margin: 40px auto 0 auto;
+        left: auto;
+        top: auto;
+    }
+    .hero-dashboard-ui img {
+        height: auto;
+        object-fit: contain;
+    }
+    
+    /* Stats Section */
+    .stats-grid { 
+        flex-direction: column; /* Stack stats vertically */
+        gap: 40px; 
+        align-items: center;
+    }
+    .stat-item {
+        text-align: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .stat-info {
+        text-align: center;
+    }
+    .stat-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .stat-info h3 {
+        font-size: 40px;
+    }
+    .stat-info span {
+        font-size: 24px;
+    }
+
+    /* Features Section */
+    .feature-card { 
+        flex-direction: column; 
+        text-align: center; 
+        max-width: 90%;
+        margin: 0 auto;
+        min-height: auto;
+    }
+    .feature-text {
+        padding: 40px 30px;
+        order: 2; /* Text below visual for all feature cards by default */
+    }
+    /* Reverse order for odd feature cards (e.g., card 2) */
+    .features-section .feature-card:nth-child(even) .feature-text {
+        order: 2;
+    }
+    .features-section .feature-card:nth-child(even) .feature-visual {
+        order: 1;
+    }
+
+    .feature-text h2 {
+        font-size: 40px;
+    }
+    .feature-text p { 
+        font-size: 24px;
+        max-width: 80%; 
+        margin: 0 auto 20px auto;
+    }
+    .feature-visual {
+        width: 100%;
+        height: 250px;
+        padding: 30px;
+        order: 1;
+    }
+
+    /* Promo Section */
+    .promo-section {
+        height: auto;
+        padding: 80px 0;
+        justify-content: center;
+    }
+    .promo-bg {
+        background-position: 60% center; /* Adjust image for better visibility */
+        opacity: 0.7;
+    }
+    .promo-card { 
+        max-width: 90%; 
+        padding: 40px;
+    }
+    .promo-card h3 {
+        font-size: 36px;
+    }
+    .promo-card a {
+        font-size: 28px;
+    }
+    
+    /* Footer */
+    .footer-links { 
+        gap: 25px; 
+        flex-wrap: wrap;
+    }
+    .footer h2 {
+        font-size: 48px;
+    }
+    .footer .btn {
+        font-size: 24px;
+    }
+    .footer-links a {
+        font-size: 20px;
+    }
+}
+
+/* Mobile Adjustments (Max-width: 576px) */
+@media (max-width: 576px) {
+    /* General Typography & Utilities */
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 28px !important; }
+    h3 { font-size: 24px !important; }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    /* Container & Reset */
+    .container {
+        padding: 0 15px; /* Tighter padding for mobile */
+    }
+
+    /* Hero Section */
+    .hero {
+        padding-top: 20px;
+    }
+    .hero-layout {
+        margin-top: 40px;
+    }
+    .hero-text h1 {
+        font-size: 36px;
+    }
+    .hero-text p {
+        font-size: 14px;
+    }
+    .hero-dashboard-ui {
+        width: 95%; /* Make dashboard wider */
+    }
+
+    /* Stats Section */
+    .stats-section {
+        padding: 30px 0;
+    }
+    .stats-grid {
+        gap: 30px;
+    }
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+    }
+    .stat-info h3 {
+        font-size: 32px;
+    }
+    .stat-info span {
+        font-size: 18px;
+    }
+
+    /* Features Section */
+    .features-section {
+        padding: 40px 0;
+        gap: 20px;
+    }
+    .feature-card {
+        max-width: 100%;
+    }
+    .feature-text {
+        padding: 20px;
+    }
+    .feature-text h2 {
+        font-size: 28px;
+    }
+    .feature-text p {
+        font-size: 18px; /* Smaller paragraph text for mobile feature cards */
+        max-width: 100%;
+    }
+    .feature-visual {
+        padding: 15px;
+        height: 200px;
+    }
+    /* Mock UI Adjustments */
+    .mock-ui-safety {
+        width: 100%;
+    }
+    .mock-alert {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .alert-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    .mock-ui-map {
+        height: 150px;
+    }
+    .map-btn {
+        font-size: 9px;
+        padding: 6px 10px;
+    }
+
+    /* Promo Section */
+    .promo-section {
+        height: 350px;
+        padding: 0;
+    }
+    .promo-card {
+        padding: 25px;
+        max-width: 95%;
+    }
+    .promo-card h3 {
+        font-size: 22px;
+    }
+    .promo-card a {
+        font-size: 16px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 30px 0 15px 0;
+    }
+    .footer h2 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    .footer .btn {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px;
+    }
+    .footer-links a {
+        font-size: 14px;
+    }
+}
