@@ -28,11 +28,17 @@ body {
 /* --- UTILITIES --- */
 .container {
     margin: 0 auto;
-    padding: 0 0 0 64px;
+    padding: 0 64px;
     position: relative;
     width: 100%;
     /* Max width for desktop viewing */
     max-width: 1920px; 
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
 }
 
 h1, h2, h3, h4 {
@@ -153,6 +159,8 @@ p {
     background-position: center;
     border-radius: unset;
     z-index: 0;
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 25%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 25%);
 }
 
 /* Dashboard Overlay - Using Mask group.png */
@@ -178,6 +186,90 @@ p {
     border-radius: 12px;
 }
 
+/* Mobile styles - same layout as desktop but smaller */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 30px;
+        padding-bottom: 40px;
+        height: auto;
+        min-height: 500px;
+        background: #ffffff;
+    }
+
+    .hero-layout {
+        flex-direction: row;
+        margin-top: 40px;
+        align-items: center;
+        position: relative;
+    }
+
+    .hero-text {
+        width: 55%;
+        z-index: 3;
+        position: relative;
+        padding-right: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        color: #000;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+        margin-bottom: 20px;
+        max-width: 100%;
+        color: #555555;
+    }
+
+    .hero-visual {
+        width: 60%;
+        position: absolute;
+        right: -40px;
+        top: 0;
+        height: 450px;
+        min-height: 450px;
+        z-index: 1;
+    }
+
+    .hero-house-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/image 2.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: unset;
+        z-index: 0;
+        filter: blur(6px);
+    }
+
+    .hero-dashboard-ui {
+        position: relative;
+        width: 75%;
+        height: 65%;
+        background: none;
+        top: 180px;
+        left: -60px;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+        padding: 0;
+        display: block;
+    }
+
+    .hero-dashboard-ui img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 12px;
+    }
+}
+
 /* --- STATS SECTION --- */
 .stats-section {
     background-color: #F1F5F8;
@@ -185,9 +277,9 @@ p {
 }
 
 .stats-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
     text-align: left;
     width: 100%;
 }
@@ -210,9 +302,17 @@ p {
 
 .stat-icon svg { width: 100%; height: 65%; fill: #333; }
 
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
 .stat-info h3 {
     font-size: 48px;
-    margin-bottom: 2px;
+    margin-bottom: 0;
+    line-height: 1;
 }
 
 .stat-info span {
@@ -442,47 +542,9 @@ p {
         padding: 0 40px; /* Adjust container padding for smaller screens */
         width: auto;
     }
-    
-    /* Hero Section */
-    .hero {
-        height: auto;
-        padding-bottom: 60px;
-    }
-    .hero-layout {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 60px;
-    }
-    .hero-text {
+    .hero-text{
         width: 100%;
-        padding: 0 20px;
     }
-    .hero-text h1 {
-        font-size: 40px;
-    }
-    .hero-text p {
-        max-width: 100%;
-        margin: 15px auto 30px auto;
-    }
-
-    /* Hide large visual elements and reposition dashboard */
-    .hero-visual,
-    .hero-house-bg { 
-        display: none; 
-    }
-    .hero-dashboard-ui {
-        position: static;
-        width: 80%;
-        height: auto;
-        margin: 40px auto 0 auto;
-        left: auto;
-        top: auto;
-    }
-    .hero-dashboard-ui img {
-        height: auto;
-        object-fit: contain;
-    }
-    
     /* Stats Section */
     .stats-grid { 
         flex-direction: column; /* Stack stats vertically */
@@ -491,7 +553,6 @@ p {
     }
     .stat-item {
         text-align: center;
-        flex-direction: column;
         gap: 10px;
     }
     .stat-info {
@@ -583,36 +644,56 @@ p {
 /* Mobile Adjustments (Max-width: 576px) */
 @media (max-width: 576px) {
     /* General Typography & Utilities */
-    h1 { font-size: 32px !important; }
-    h2 { font-size: 28px !important; }
-    h3 { font-size: 24px !important; }
+    h1 { font-size: 22px !important; }
+    h2 { font-size: 16px !important; }
+    h3 { font-size: 16px !important; }
 
     .btn {
         padding: 10px 20px;
         font-size: 14px;
     }
-    
+    .hero-text p {
+        font-size: 13px;
+        max-width: 220px;
+    }
+    .hero-dashboard-ui {
+        top: 15px;
+        left: 15px;
+        width: 75%;
+    }
+    .hero-text{
+        width: 65%;
+    }
+    .hero-house-bg{
+        filter: unset;
+    }
+    .hero{
+        min-height: 410px;
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .hero-layout{
+        margin-top: 0;
+    }
+    .logo-placeholder{
+        margin-bottom: 0;
+    }
+    .logo-placeholder svg{
+        width: 131px;
+    }
+    .hero-visual{
+        height: 315px;
+        min-height: 315px;
+        width: 60%;
+    }
     /* Container & Reset */
+    .container:not(section .container) {
+        padding: 0 0 0 15px; /* Tighter padding for mobile */
+        width: 100%;
+    }
     .container {
         padding: 0 15px; /* Tighter padding for mobile */
         width: 100%;
-    }
-
-    /* Hero Section */
-    .hero {
-        padding-top: 20px;
-    }
-    .hero-layout {
-        margin-top: 40px;
-    }
-    .hero-text h1 {
-        font-size: 36px;
-    }
-    .hero-text p {
-        font-size: 14px;
-    }
-    .hero-dashboard-ui {
-        width: 95%; /* Make dashboard wider */
     }
 
     /* Stats Section */
@@ -620,7 +701,10 @@ p {
         padding: 30px 0;
     }
     .stats-grid {
-        gap: 30px;
+        gap: 0;
+    }
+    .stat-icon{
+        border: none;
     }
     .stat-icon {
         width: 60px;
@@ -630,7 +714,8 @@ p {
         font-size: 32px;
     }
     .stat-info span {
-        font-size: 18px;
+        font-size: 10px;
+        text-align: left;
     }
 
     /* Features Section */
@@ -640,20 +725,28 @@ p {
     }
     .feature-card {
         max-width: 100%;
+        flex-direction: row-reverse;
     }
     .feature-text {
-        padding: 20px;
+        padding: 9px;
+        min-width: 200px;
     }
     .feature-text h2 {
         font-size: 28px;
     }
     .feature-text p {
-        font-size: 18px; /* Smaller paragraph text for mobile feature cards */
+        font-size: 11px; /* Smaller paragraph text for mobile feature cards */
         max-width: 100%;
+        text-align: left;
     }
     .feature-visual {
         padding: 15px;
-        height: 200px;
+        height: 82px;
+    }
+    .feature-visual img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
     /* Mock UI Adjustments */
     .mock-ui-safety {
@@ -683,13 +776,18 @@ p {
     }
     .promo-card {
         padding: 25px;
-        max-width: 95%;
+        max-width: 60%;
     }
     .promo-card h3 {
-        font-size: 22px;
+        font-size: 11px !important;
     }
     .promo-card a {
-        font-size: 16px;
+        font-size: 11px;
+    }
+
+    .promo-bg{
+        opacity: 1;
+        background-position: 75% center;
     }
 
     /* Footer */
